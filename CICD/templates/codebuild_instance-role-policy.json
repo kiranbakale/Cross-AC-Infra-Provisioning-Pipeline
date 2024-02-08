@@ -14,6 +14,7 @@
 				"arn:aws:ecr:*:UAT-ACCOUNT-ID:repository/*",
 				"*",
 				"arn:aws:iam::UAT-ACCOUNT-ID:role/*",
+				"arn:aws:iam::DEV-ACCOUNT-ID:role/*",
 				"arn:aws:s3:::*"
 			]
 		},
