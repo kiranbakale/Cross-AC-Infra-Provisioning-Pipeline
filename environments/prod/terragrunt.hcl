@@ -20,7 +20,7 @@ inputs = {
 env = "templates-prod"
 
   #------------ REGION ------------------------
-  region = "ap-southeast-2"
+  region = "your-region-code"
 
   # ------------ RESOURCE PREFIX ------------------------
   prefix = "crossac"

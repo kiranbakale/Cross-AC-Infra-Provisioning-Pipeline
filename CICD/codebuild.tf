@@ -24,8 +24,13 @@ resource "aws_codebuild_project" "test-backend" {
     }
 
     environment_variable {
-      name  = "CROSS_ACCOUNT_ROLE_ARN_DEV"
-      value = "arn:aws:iam::UAT-ACCOUNT-ID:role/SwayamAcRole"
+      name  = "UAT_ROLE_ARN"
+      value = "PASTE THE UAT ACCOUNT ROLE HERE"
+    }
+    
+    environment_variable {
+      name  = "PROD_ROLE_ARN"
+      value = "PASTE THE PROD ACCOUNT ROLE HERE"
     }
 
   }
@@ -49,7 +54,7 @@ resource "aws_s3_bucket" "test-artifacts-bucket" {
 
 #------------------ CODEBUILD PROJECT FOR MANUAL-APPROVAL ---------------------------------
 resource "aws_codebuild_project" "test-manual_approval" {
-  depends_on     = [aws_iam_role.codebuildinstancerole]
+  depends_on     = [aws_iam_role.codebuildinstancerole, aws_codebuild_project.test-backend]
   count          = var.create_codebuild_dev-test-backend-apprunner == true ? 1 : 0
   name           = var.project_names_test_manual_approval
   description    = var.dev_backend_codebuild_description
@@ -74,9 +79,15 @@ resource "aws_codebuild_project" "test-manual_approval" {
       value = "arn:aws:iam::DEV-ACCOUNT-ID:role/crossac-codebuildinstancerole"
     }
 
+    
     environment_variable {
-      name  = "CROSS_ACCOUNT_ROLE_ARN_DEV"
-      value = "arn:aws:iam::UAT-ACCOUNT-ID:role/SwayamAcRole"
+      name  = "UAT_ROLE_ARN"
+      value = "PASTE THE UAT ACCOUNT ROLE HERE"
+    }
+    
+    environment_variable {
+      name  = "PROD_ROLE_ARN"
+      value = "PASTE THE PROD ACCOUNT ROLE HERE"
     }
 
   }

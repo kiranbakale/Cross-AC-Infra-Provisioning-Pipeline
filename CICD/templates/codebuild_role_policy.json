@@ -28,7 +28,6 @@
             "Resource": [
                 "arn:aws:ecr:*:DEV-ACCOUNT-ID:repository/*",
                 "arn:aws:ecr:*:UAT-ACCOUNT-ID:repository/*",
-                "arn:aws:ecr:*:PROD-ACCOUNT-ID:repository/*",
                 "arn:aws:ecr:*:PROD-ACCOUNT-ID:repository/*"
             ]
         },

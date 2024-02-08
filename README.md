@@ -1,22 +1,24 @@
 # Cross-Account-Infra-Provisioning pipeline
 
- 
-This repository uses terraform-terragrunt to automate infrastructure provisioning in AWS account.
+<p align="center">
+  <img src ="https://img.shields.io/badge/Terraform-412991.svg?style&logo=Terraform&logoColor=white"/>
+  <img src ="https://img.shields.io/badge/Git-F05032.svg?style&logo=git&logoColor=white"/>
+  <img src ="https://img.shields.io/badge/Terragrunt-375EAB.svg?style&logo=Terragrunt&logoColor=white"/>
+  <img src ="https://img.shields.io/badge/Amazon_AWS-FFA500.svg?style&logo=amazonaws&logoColor=white" size = 40px/>
 
+## Contributors
+Thanks to the contributors without them this project seemed next to impossible!
 
+- @mfarhansayed
+- @Ashish-sarawad
+- @Phaninder-Sangers
 
-## DEVOPS WORKFLOW
-### INFRA PROVISIONING USING TERRAFORM
--	Provision the necessary infrastructure resources, including Network Layer, Database Layer, ECR, S3, Secrets Manager, SES, SQS, DynamoDB and AppRunner for both the Frontend and Backend services.
+This repository uses `terraform-terragrunt` to automate infrastructure provisioning in AWS account.
 
--	Setup the environments configs.
+ Description
 
--	 `backend.tf` - includes the configuration for storing the backend in remote-state & state locking using i.e S3 Bucket.
+If you are interested in deploying this setup, follow the detailed step-by-step guide in this <a href="https://medium.com/@kiranbakale9/simplified-ci-cd-gitops-with-jenkins-and-argocd-b76de1c80362">Medium Article</a>
 
-- `terragrunt.hcl` - The terragrunt.hcl file is a Terragrunt-specific configuration file used to assign values to variables defined in the project. it allows users to set values for variables, such as AWS region, instance types, or any other configurable parameters. By maintaining a separate terragrunt.hcl file, users can easily update or modify variable values without altering the main Terraform configuration files.
-
-
--	After configuring the settings, apply Terraform to provision all the necessary resources.
 ## How To Use
  
 
@@ -34,32 +36,41 @@ Use Installation guides given below to install dependencies based upon your oper
 ### Clone the repository
   - Clone the code from the repository
   ```sh
-  git clone repo-url 
+  git clone https://github.com/kiranbakale/Cross-AC-Infra-Provisioning-Pipeline 
   ```
   - Configuring the aws credentials for dev account by using the following command
   ```sh
   aws configure
   ```
 - provide access & secret key of respective user of dev-account and `any region` of your choice is to be selected
+  
+</p>  
+ 
 
 
-## To make changes in Infra-resources.
-- Open `terragrunt.hcl` file in the environments folder and click on required folder.
- 
-1. In `terragrunt.hcl` under terragrunt.hcl navigate to specific resource in inputs section that has resource name labelled above it.
- 
-2. Under `terragrunt.hcl` - All the resources are variablized & creation of resource can be controlled using `inputs block`
- 
-3. `terragrunt init` - terragrunt init initializes the Terragrunt configuration, downloads the specified Terraform configurations, and sets up the backend for remote state management.
- 
-4. `terragrunt plan` - terragrunt plan generates and displays an execution plan based on the Terraform configurations, allowing you to review the changes that will be applied before actually applying them.
- 
-5.  ` terragrunt apply -auto-approve` - to apply the changes
 
-6. Add , commit and push the latest changes
+## DEVOPS WORKFLOW
+### PIPELINE-INFRA-PROVISIONING USING TERRAFORM - DEV ACCOUNT
+- The main infra provisioning pipeline will be created in the Primary-Account i.e Dev Account and pipeline will operate from this account
 
- ```sh
-git add .
-git commit -m "message"
-git push origin master
+-	Firstly, Navigate to the `CI/CD` folder & make changes in TF_scripts accordingly to Provision the necessary infrastructure resources that will be used to create the CI/CD Pipeline.
 
+-	Setup the environments configs - aws credentials.
+
+-	 `backend.tf` - includes the configuration for storing the backend in remote-state & state locking using i.e S3 Bucket - make the necessary changes mentioned in the file.
+
+- `terraform.tfvars` - The terraform.tfvars file is a Terraform-specific configuration file used to assign values to variables defined in the project. it allows users to set values for variables, such as AWS region, instance types, or any other configurable parameters. By maintaining a separate terraform.tfvars file, users can easily update or modify variable values without altering the main Terraform configuration files by typing the following commands.
+
+
+-	After configuring the settings, apply Terraform to provision all the necessary resources.
+
+
+## To make changes in Infra-resources - Prod or UAT Account.
+- Navigate to `TF-files` folder to add any new resources to be provisioned in the account and also dont forget to add variables accordingly.
+
+1. Open `terragrunt.hcl` file in the environments folder and click on required folder.
+ 
+2. In `terragrunt.hcl` under terragrunt.hcl navigate to specific resource in inputs section that has resource name labelled above it.
+ 
+3. Under `terragrunt.hcl` - All the resources are variablized & creation of resource can be controlled using `inputs block`
+4. For a fully fledged explanation and If you are interested in deploying this setup, follow the detailed step-by-step guide in this <a href="https://medium.com/@kiranbakale9/simplified-ci-cd-gitops-with-jenkins-and-argocd-b76de1c80362">Medium Article</a> This repository serves as a blueprint for implementing a Cross-A/C-Infra-Provisioning-Pipeline, promoting automation and efficiency in the software delivery process. Feel free to customize and extend it based on your specific project needs.
