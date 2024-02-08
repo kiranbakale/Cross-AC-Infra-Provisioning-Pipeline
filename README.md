@@ -20,7 +20,7 @@ This repository uses `terraform-terragrunt` to automate infrastructure provision
 
  Description
 
-If you are interested in deploying this setup, follow the detailed step-by-step guide in this <a href="https://medium.com/@kiranbakale9/simplified-ci-cd-gitops-with-jenkins-and-argocd-b76de1c80362">Medium Article</a>
+If you are interested in deploying this setup, follow the detailed step-by-step guide in this <a href="https://medium.com/@kiranbakale9/cross-account-infra-provisioning-pipeline-5a4c3feef052">Medium Article</a>
 
 ## How To Use
  
@@ -76,4 +76,4 @@ Use Installation guides given below to install dependencies based upon your oper
 2. In `terragrunt.hcl` under terragrunt.hcl navigate to specific resource in inputs section that has resource name labelled above it.
  
 3. Under `terragrunt.hcl` - All the resources are variablized & creation of resource can be controlled using `inputs block`
-4. For a fully fledged explanation and If you are interested in deploying this setup, follow the detailed step-by-step guide in this <a href="https://medium.com/@kiranbakale9/simplified-ci-cd-gitops-with-jenkins-and-argocd-b76de1c80362">Medium Article</a> This repository serves as a blueprint for implementing a Cross-A/C-Infra-Provisioning-Pipeline, promoting automation and efficiency in the software delivery process. Feel free to customize and extend it based on your specific project needs.
+4. For a fully fledged explanation and If you are interested in deploying this setup, follow the detailed step-by-step guide in this <a href="https://medium.com/@kiranbakale9/cross-account-infra-provisioning-pipeline-5a4c3feef052">Medium Article</a> This repository serves as a blueprint for implementing a Cross-A/C-Infra-Provisioning-Pipeline, promoting automation and efficiency in the software delivery process. Feel free to customize and extend it based on your specific project needs.

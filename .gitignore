@@ -2,7 +2,6 @@
 ~WRL1135.tmp
 *.terraform*
 *.terragrunt*
-Cross Account Infra Provisioning Pipeline.docx
 .*.sw?
 .idea
 vendor
