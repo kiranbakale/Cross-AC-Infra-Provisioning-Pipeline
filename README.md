@@ -6,6 +6,9 @@
   <img src ="https://img.shields.io/badge/Terragrunt-375EAB.svg?style&logo=Terragrunt&logoColor=white"/>
   <img src ="https://img.shields.io/badge/Amazon_AWS-FFA500.svg?style&logo=amazonaws&logoColor=white" size = 40px/>
 
+![AWS](https://github.com/kiranbakale/Cross-AC-Infra-Provisioning-Pipeline/assets/46279617/281b12f4-703a-4bb0-9764-cfd70009890c)
+
+
 ## Contributors
 Thanks to the contributors without them this project seemed next to impossible!
 
