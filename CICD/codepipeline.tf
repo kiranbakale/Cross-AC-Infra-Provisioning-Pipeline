@@ -61,17 +61,20 @@ resource "aws_codepipeline" "codepipeline_be-test" {
       provider = "Manual"
       version  = "1"
     }
+}
 
-    action {
-      name             = "TF_APPLY"
-      category         = "Build"
-      owner            = "AWS"
-      provider         = "CodeBuild"
-      input_artifacts  = ["source_output"]
-      output_artifacts = ["build_output_apply_artifacts"]
-      version          = "1"
-
-      configuration = {
+stage {
+  name = "TF_APPLY"
+  action {
+    name            = "TF_APPLY"
+    category         = "Build"
+    owner            = "AWS"
+    provider         = "CodeBuild"
+    input_artifacts  = ["source_output"]
+    output_artifacts = ["build_output_apply_artifacts"]
+    version          = "1"
+    
+    configuration = {
         ProjectName = aws_codebuild_project.test-manual_approval[0].name
       }
     }
