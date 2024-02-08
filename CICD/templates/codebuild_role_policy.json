@@ -1,0 +1,59 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor2",
+            "Effect": "Allow",
+            "Action": "codebuild:*",
+            "Resource": "arn:aws:codebuild:*:DEV-ACCOUNT-ID:project/*"
+        },
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": "logs:CreateLogStream",
+            "Resource": "arn:aws:logs:ap-south-1:DEV-ACCOUNT-ID:log-group:*:log-stream:*"
+        },
+        {
+            "Sid": "VisualEditor7",
+            "Effect": "Allow",
+            "Action": "logs:CreateLogGroup",
+            "Resource": [
+                "arn:aws:logs:ap-south-1:DEV-ACCOUNT-ID:log-group:/aws/codebuild/*:*"
+            ]
+        },
+        {
+            "Sid": "VisualEditor8",
+            "Effect": "Allow",
+            "Action": "ecr:*",
+            "Resource": [
+                "arn:aws:ecr:*:DEV-ACCOUNT-ID:repository/*",
+                "arn:aws:ecr:*:UAT-ACCOUNT-ID:repository/*",
+                "arn:aws:ecr:*:PROD-ACCOUNT-ID:repository/*",
+                "arn:aws:ecr:*:PROD-ACCOUNT-ID:repository/*"
+            ]
+        },
+        {
+            "Sid": "VisualEditor3",
+            "Effect": "Allow",
+            "Action": "logs:PutLogEvents",
+            "Resource": [
+                "arn:aws:logs:ap-south-1:DEV-ACCOUNT-ID:log-group:/aws/codebuild/*:log-stream:*"
+                
+            ]
+        },
+        {
+            "Sid": "VisualEditor5",
+            "Effect": "Allow",
+            "Action": "s3:*",
+            "Resource": "arn:aws:s3:::*"
+        },
+        {
+            "Sid": "VisualEditor6",
+            "Effect": "Allow",
+            "Action": "codecommit:*",
+            "Resource": [
+                "arn:aws:codecommit:*:DEV-ACCOUNT-ID:*"
+            ]
+        }
+    ]
+}

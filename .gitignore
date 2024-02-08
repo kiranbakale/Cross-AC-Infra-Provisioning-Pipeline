@@ -1,0 +1,17 @@
+**/.terragrunt-cache/*
+
+*.terraform*
+*.terragrunt*
+Cross Account Infra Provisioning Pipeline.docx
+.*.sw?
+.idea
+vendor
+.terraform
+.vscode
+*.tfstate
+*.tfstate.backup
+*.out
+.terragrunt-cache
+.bundle
+.ruby-version
+.terraform.lock.hcl

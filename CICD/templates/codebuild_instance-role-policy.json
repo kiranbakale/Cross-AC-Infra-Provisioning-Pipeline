@@ -1,0 +1,52 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Action": [
+				"ecr:*",
+				"sts:AssumeRole",
+				"s3:ListBucket",
+				"s3:*"
+			],
+			"Effect": "Allow",
+			"Resource": [
+				"arn:aws:ecr:*:DEV-ACCOUNT-ID:repository/*/*",
+				"arn:aws:ecr:*:UAT-ACCOUNT-ID:repository/*",
+				"*",
+				"arn:aws:iam::UAT-ACCOUNT-ID:role/*",
+				"arn:aws:s3:::*"
+			]
+		},
+		{
+			"Action": [
+				"codecommit:BatchGetRepositories",
+				"codecommit:CancelUploadArchive",
+				"codecommit:CreateBranch",
+				"codecommit:CreateCommit",
+				"codecommit:CreatePullRequest",
+				"codecommit:CreateRepository",
+				"codecommit:DeleteBranch",
+				"codecommit:DeleteRepository",
+				"codecommit:GitPull",
+				"codecommit:GitPush",
+				"codecommit:GetBranch",
+				"codecommit:GetCommit",
+				"codecommit:GetPullRequest",
+				"codecommit:GetRepository",
+				"codecommit:GetRepositoryTriggers",
+				"codecommit:ListBranches",
+				"codecommit:ListPullRequests",
+				"codecommit:ListRepositories",
+				"codecommit:PutRepositoryTriggers",
+				"codecommit:TestRepositoryTriggers",
+				"codecommit:UpdateDefaultBranch",
+				"codecommit:UpdateRepositoryDescription",
+				"codecommit:UpdateRepositoryName"
+			],
+			"Effect": "Allow",
+			"Resource": [
+				"arn:aws:codecommit:*:DEV-ACCOUNT-ID:*"
+			]
+		}
+	]
+}

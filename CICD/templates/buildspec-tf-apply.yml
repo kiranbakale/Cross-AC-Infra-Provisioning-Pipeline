@@ -1,0 +1,66 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - pwd
+      - TEMP_ROLE=$(aws sts assume-role --role-arn $ASSUME_ROLE_ARN --role-session-name my-session --duration-seconds 3600)
+      - export TEMP_ROLE
+      - AWS_ACCESS_KEY_ID="$(echo ${TEMP_ROLE} | jq -r '.Credentials.AccessKeyId')"
+      - AWS_SECRET_ACCESS_KEY="$(echo ${TEMP_ROLE} | jq -r '.Credentials.SecretAccessKey')"
+      - AWS_SESSION_TOKEN="$(echo ${TEMP_ROLE} | jq -r '.Credentials.SessionToken')"
+      - ls -a
+      - sudo yum install -y yum-utils shadow-utils
+      - sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+      - sudo yum -y install terraform
+      - terraform --version
+      - yum install wget
+      - wget https://github.com/gruntwork-io/terragrunt/releases/download/v0.48.1/terragrunt_linux_amd64
+      - sudo mv terragrunt_linux_amd64 terragrunt
+      - chmod u+x terragrunt
+      - sudo mv terragrunt /usr/local/bin/terragrunt
+      - terragrunt --version
+      - yum install git -y
+      - git config --global credential.helper '!aws codecommit credential-helper $@'
+      - git config --global credential.UseHttpPath true
+      - aws sts get-caller-identity
+      - git clone -b master your-codecommit-repo-url > /dev/null 2>&1
+      - ls
+      - cd your-repo-folder
+      - git fetch --tags
+      - RPWD=$(pwd)
+      - echo $RPWD
+      - pwd
+      - latest_tag=$(git describe --tags | tail -n +1)
+      - echo "$latest_tag"
+      - cd ..
+  
+  pre_build:
+    commands:  
+      - |
+         if [[ "$latest_tag" == uat* ]]; then
+           ls
+           RPATH="$RPWD/environments/uat"
+           echo "Planning for UAT-Infra!"
+           cd $RPATH
+         elif [[ "$latest_tag" == prod* ]]; then
+           RPATH="$RPWD/environments/prod"
+           echo "Planning for Prod-Infra"
+           cd $RPATH
+         fi
+  
+  build:
+    commands:  
+      - pwd
+      - ls
+      - echo $RPATH
+      - cd $RPATH
+      - CROSS_ACCOUNT_ROLE=$(aws sts assume-role --role-arn $CROSS_ACCOUNT_ROLE_ARN_DEV --role-session-name my-cross-account-session)
+      - export CROSS_ACCOUNT_ROLE
+      - AWS_ACCESS_KEY_ID="$(echo ${CROSS_ACCOUNT_ROLE} | jq -r '.Credentials.AccessKeyId')"
+      - AWS_SECRET_ACCESS_KEY="$(echo ${CROSS_ACCOUNT_ROLE} | jq -r '.Credentials.SecretAccessKey')"
+      - AWS_SESSION_TOKEN="$(echo ${CROSS_ACCOUNT_ROLE} | jq -r '.Credentials.SessionToken')"
+      - aws sts get-caller-identity
+      - terragrunt init
+      - terragrunt apply
+      - ls
+      - aws s3 ls

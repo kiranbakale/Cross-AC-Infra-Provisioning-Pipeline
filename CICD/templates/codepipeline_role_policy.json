@@ -1,0 +1,23 @@
+{
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Action" : "codebuild:*",
+        "Resource" : "arn:aws:codebuild:ap-south-1:DEV-ACCOUNT-ID:project/*",
+        "Effect" : "Allow"
+      },
+      {
+        "Action" : "codecommit:*",
+        "Resource" : [
+        "arn:aws:codecommit:*:DEV-ACCOUNT-ID:*"
+        ],
+        "Effect" : "Allow"
+      },
+      {
+        "Effect" : "Allow",
+        "Action" : "s3:*",
+        "Resource" : "arn:aws:s3:::*"
+      }
+    ]
+  }
+
